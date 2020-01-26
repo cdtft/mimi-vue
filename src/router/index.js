@@ -8,6 +8,10 @@ const routes = [
   // 设置路由
   {
     path: '/login', component: Login
+  },
+  // 重定向路由
+  {
+    path: '/', redirect: '/login'
   }
 ]
 
