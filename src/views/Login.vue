@@ -5,12 +5,18 @@
         <img src="../assets/logo.png" alt=""/>
       </div>
       <div class="login_form">
-        <el-form :model="loginForm" label-width="80px">
-          <el-form-item label="用户名">
-            <el-input v-bind="loginForm.username"></el-input>
+        <el-form :model="loginForm">
+          <el-form-item>
+            <el-input v-model="loginForm.username" prefix-icon="el-icon-s-custom"></el-input>
           </el-form-item>
-          <el-form-item label="密码：">
-            <el-input v-bind="loginForm.password"></el-input>
+          <el-form-item>
+            <el-input type="password" v-model="loginForm.password" prefix-icon="el-icon-s-opportunity"></el-input>
+          </el-form-item>
+          <el-form-item class="btn">
+            <div class="btns-div">
+              <el-button type="primary">登陆</el-button>
+              <el-button type="info">重置</el-button>
+            </div>
           </el-form-item>
         </el-form>
       </div>
@@ -25,7 +31,7 @@ export default {
     return {
       // 表单数据绑定
       loginForm: {
-        username: 'wangcheng',
+        username: 'wangcheng1',
         password: 'wangcheng'
       }
     }
@@ -58,6 +64,7 @@ export default {
     box-shadow: 0 0 10px #ddd;
     position: absolute;
     transform: translate(0, -50%);
+    background-color: #ddd;
     // 元素选择
     img {
       width: 100%;
@@ -66,10 +73,15 @@ export default {
       background-color: #eee;
     }
   }
-
   .login_form {
     justify-content: center;
-    margin-top: 150px;
+    margin-top: 100px;
+    width: 100%;
+    padding: 20px;
+  }
+  .btn {
+    width: 160px;
+    left: 10px;
   }
 }
 </style>
