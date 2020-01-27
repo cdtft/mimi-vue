@@ -5,18 +5,16 @@
         <img src="../assets/logo.png" alt=""/>
       </div>
       <div class="login_form">
-        <el-form :model="loginForm">
-          <el-form-item>
+        <el-form :model="loginForm" :rules="loginFormRules">
+          <el-form-item prop="username">
             <el-input v-model="loginForm.username" prefix-icon="el-icon-s-custom"></el-input>
           </el-form-item>
-          <el-form-item>
+          <el-form-item prop="password">
             <el-input type="password" v-model="loginForm.password" prefix-icon="el-icon-s-opportunity"></el-input>
           </el-form-item>
           <el-form-item class="btn">
-            <div class="btns-div">
               <el-button type="primary">登陆</el-button>
               <el-button type="info">重置</el-button>
-            </div>
           </el-form-item>
         </el-form>
       </div>
@@ -31,8 +29,17 @@ export default {
     return {
       // 表单数据绑定
       loginForm: {
-        username: 'wangcheng1',
-        password: 'wangcheng'
+        username: '',
+        password: ''
+      },
+      loginFormRules: {
+        username: [
+          { required: true, message: '登陆名不能为空', trigger: 'blur' },
+          { min: 6, max: 12, message: '登陆名长度为6-12', trigger: 'blur' }
+        ],
+        password: [
+          { required: true, message: '密码不能为空', trigger: 'blur' }
+        ]
       }
     }
   }
@@ -78,10 +85,6 @@ export default {
     margin-top: 100px;
     width: 100%;
     padding: 20px;
-  }
-  .btn {
-    width: 160px;
-    left: 10px;
   }
 }
 </style>
