@@ -5,16 +5,18 @@
         <img src="../assets/logo.png" alt=""/>
       </div>
       <div class="login_form">
-        <el-form :model="loginForm" :rules="loginFormRules">
+        <el-form ref="loginFormRef" :model="loginForm" :rules="loginFormRules">
           <el-form-item prop="username">
             <el-input v-model="loginForm.username" prefix-icon="el-icon-s-custom"></el-input>
           </el-form-item>
           <el-form-item prop="password">
             <el-input type="password" v-model="loginForm.password" prefix-icon="el-icon-s-opportunity"></el-input>
           </el-form-item>
-          <el-form-item class="btn">
-              <el-button type="primary">登陆</el-button>
-              <el-button type="info">重置</el-button>
+          <el-form-item>
+            <div class="btn">
+              <el-button type="primary" @click="login">登陆</el-button>
+              <el-button type="info" @click="resetLoginForm">重置</el-button>
+            </div>
           </el-form-item>
         </el-form>
       </div>
@@ -41,6 +43,20 @@ export default {
           { required: true, message: '密码不能为空', trigger: 'blur' }
         ]
       }
+    }
+  },
+  methods: {
+    // 重置表单，定义表单引用对象，获取引用对象
+    resetLoginForm () {
+      this.$refs.loginFormRef.resetFields()
+    },
+    login () {
+      this.$refs.loginFormRef.validate(async isOK => {
+        // 登陆请求
+        const resp = await this.$http.post('/login', this.loginForm)
+        console.log(resp.status)
+        console.log(resp.data)
+      })
     }
   }
 }
