@@ -10,7 +10,7 @@ const routes = [
   { path: '/login', component: Login },
   // 重定向路由
   { path: '/', redirect: '/login' },
-  { path: '/home', component: Hello }
+  { path: '/hello', component: Hello }
 ]
 
 const router = new VueRouter({
@@ -24,6 +24,8 @@ router.beforeEach((to, from, next) => {
     let token = window.sessionStorage.getItem('token')
     if (!token) {
       return next('/login')
+    } else {
+      return next()
     }
   }
 })

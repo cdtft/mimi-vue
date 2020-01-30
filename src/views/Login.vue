@@ -50,7 +50,7 @@ export default {
     resetLoginForm () {
       this.$refs.loginFormRef.resetFields()
     },
-    login: function (key) {
+    login: function () {
       this.$refs.loginFormRef.validate(async isOK => {
         if (!isOK) {
           return
@@ -60,7 +60,7 @@ export default {
         if (resp.data.code === 200) {
           this.$message.success('登陆成功')
           window.sessionStorage.setItem('token', resp.data.data.token)
-          this.$router.push('/home')
+          this.$router.push('/hello')
         } else {
           this.$message.error('登陆失败')
         }
@@ -109,6 +109,10 @@ export default {
     margin-top: 100px;
     width: 100%;
     padding: 20px;
+  }
+  .btn {
+    display: flex;
+    justify-content: flex-end;
   }
 }
 </style>
