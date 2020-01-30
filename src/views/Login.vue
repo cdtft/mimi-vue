@@ -31,13 +31,13 @@ export default {
     return {
       // 表单数据绑定
       loginForm: {
-        username: '',
-        password: ''
+        username: 'admin',
+        password: 'admin'
       },
       loginFormRules: {
         username: [
           { required: true, message: '登陆名不能为空', trigger: 'blur' },
-          { min: 6, max: 12, message: '登陆名长度为6-12', trigger: 'blur' }
+          { min: 5, max: 12, message: '登陆名长度为5-12', trigger: 'blur' }
         ],
         password: [
           { required: true, message: '密码不能为空', trigger: 'blur' }
@@ -50,12 +50,20 @@ export default {
     resetLoginForm () {
       this.$refs.loginFormRef.resetFields()
     },
-    login () {
+    login: function (key) {
       this.$refs.loginFormRef.validate(async isOK => {
+        if (!isOK) {
+          return
+        }
         // 登陆请求
         const resp = await this.$http.post('/login', this.loginForm)
-        console.log(resp.status)
-        console.log(resp.data)
+        if (resp.data.code === 200) {
+          this.$message.success('登陆成功')
+          window.sessionStorage.setItem('token', resp.data.data.token)
+          this.$router.push('/home')
+        } else {
+          this.$message.error('登陆失败')
+        }
       })
     }
   }

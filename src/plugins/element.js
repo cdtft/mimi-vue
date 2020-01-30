@@ -5,5 +5,6 @@ Vue.use(Button)
 Vue.use(Form)
 Vue.use(FormItem)
 Vue.use(Input)
-// 引入消息通知组件
-Vue.use(Message)
+
+// 引入消息通知组件,并挂载为一个属性
+Vue.prototype.$message = Message
