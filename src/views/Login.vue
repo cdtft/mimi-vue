@@ -49,6 +49,7 @@ export default {
     // 重置表单，定义表单引用对象，获取引用对象
     resetLoginForm () {
       this.$refs.loginFormRef.resetFields()
+      this.$message.info('已经重置为默认的登陆用户')
     },
     login: function () {
       this.$refs.loginFormRef.validate(async isOK => {
