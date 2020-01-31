@@ -11,40 +11,33 @@
     <el-container>
       <!--侧边栏-->
       <el-aside width="200px">
-        <el-col :span="12">
           <el-menu
             default-active="1"
-            class="el-menu-vertical-demo"
-            @open="handleOpen"
-            @close="handleClose"
             background-color="#333744"
             text-color="#fff"
-            active-text-color="#ffd04b">
+            active-text-color="#3e8fbc"
+            :unique-opened="true">
             <!--一级导航-->
-            <el-submenu index="1">
+            <el-submenu :index="firstMenu.id + ''" v-for="firstMenu in menuList" :key="firstMenu.id">
               <template slot="title">
-                <i class="el-icon-location"></i>
-                <span>导航一</span>
+                <i class="el-icon-user"></i>
+                <span>{{ firstMenu.authName }}</span>
               </template>
               <!--二级导航-->
-              <el-menu-item index="1-1">
+              <el-menu-item :index="secondMenu.id + ''" v-for="secondMenu in firstMenu.children" :key="secondMenu.id">
                 <template slot="title">
-                  <i class="el-icon-location"></i>
-                  <span>导航一.1</span>
-                </template>
-              </el-menu-item>
-              <el-menu-item index="1-2">
-                <template slot="title">
-                  <i class="el-icon-location"></i>
-                  <span>导航一.2</span>
+                  <i class="el-icon-menu"></i>
+                  <span>{{ secondMenu.authName }}</span>
                 </template>
               </el-menu-item>
             </el-submenu>
           </el-menu>
-        </el-col>
       </el-aside>
       <!--展示区-->
-      <el-main>Main</el-main>
+      <el-main>
+         <!--路由占位符-->
+        <router-view></router-view>
+      </el-main>
     </el-container>
   </el-container>
 </template>
@@ -52,15 +45,23 @@
 <script>
 export default {
   name: 'Hello',
+  created () {
+    this.getAllMenu()
+  },
+  data () {
+    return {
+      menuList: []
+    }
+  },
   methods: {
-    handleOpen (key, keyPath) {
-      console.log(key, keyPath)
-    },
-    handleClose (key, keyPath) {
-      console.log(key, keyPath)
-    },
     logout () {
-      this.$message.info('登出')
+      window.sessionStorage.removeItem('token')
+      this.$router.push('/login')
+      return this.$message.info('登出')
+    },
+    async getAllMenu () {
+      const { data: resp } = await this.$http.get('/menu/list')
+      this.menuList = resp.data
     }
   }
 }
@@ -91,5 +92,8 @@ export default {
   }
   .el-main {
     background-color: #eaedf1;
+  }
+  .el-menu {
+    border-right: 0px;
   }
 </style>

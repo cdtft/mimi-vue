@@ -61,7 +61,7 @@ export default {
         if (resp.data.code === 200) {
           this.$message.success('登陆成功')
           window.sessionStorage.setItem('token', resp.data.data.token)
-          this.$router.push('/hello')
+          this.$router.push('/home')
         } else {
           this.$message.error('登陆失败')
         }

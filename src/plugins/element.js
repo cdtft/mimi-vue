@@ -11,7 +11,8 @@ import {
   Header,
   Menu,
   MenuItem,
-  Submenu
+  Submenu,
+  Col
 } from 'element-ui'
 
 Vue.use(Button)
@@ -25,6 +26,7 @@ Vue.use(Header)
 Vue.use(Menu)
 Vue.use(MenuItem)
 Vue.use(Submenu)
+Vue.use(Col)
 
 // 引入消息通知组件,并挂载为一个属性
 Vue.prototype.$message = Message

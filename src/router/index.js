@@ -2,15 +2,21 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Login from '../views/Login.vue'
 import Home from '../views/Home'
+import Welcome from '../views/Welcome'
 
 Vue.use(VueRouter)
 
 const routes = [
-  // 设置路由
   { path: '/login', component: Login },
-  // 重定向路由
   { path: '/', redirect: '/login' },
-  { path: '/home', component: Home }
+  {
+    path: '/home',
+    component: Home,
+    redirect: '/welcome',
+    children: [
+      { path: '/welcome', component: Welcome }
+    ]
+  }
 ]
 
 const router = new VueRouter({
