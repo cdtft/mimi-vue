@@ -11,7 +11,6 @@ import {
   Header,
   Menu,
   MenuItem,
-  MenuItemGroup,
   Submenu
 } from 'element-ui'
 
@@ -25,7 +24,6 @@ Vue.use(Main)
 Vue.use(Header)
 Vue.use(Menu)
 Vue.use(MenuItem)
-Vue.use(MenuItemGroup)
 Vue.use(Submenu)
 
 // 引入消息通知组件,并挂载为一个属性

@@ -20,13 +20,25 @@
             background-color="#333744"
             text-color="#fff"
             active-text-color="#ffd04b">
+            <!--一级导航-->
             <el-submenu index="1">
               <template slot="title">
                 <i class="el-icon-location"></i>
                 <span>导航一</span>
               </template>
-              <el-menu-item index="1-1">选项1</el-menu-item>
-              <el-menu-item index="1-2">选项2</el-menu-item>
+              <!--二级导航-->
+              <el-menu-item index="1-1">
+                <template slot="title">
+                  <i class="el-icon-location"></i>
+                  <span>导航一.1</span>
+                </template>
+              </el-menu-item>
+              <el-menu-item index="1-2">
+                <template slot="title">
+                  <i class="el-icon-location"></i>
+                  <span>导航一.2</span>
+                </template>
+              </el-menu-item>
             </el-submenu>
           </el-menu>
         </el-col>
