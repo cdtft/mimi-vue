@@ -12,7 +12,10 @@ import {
   Menu,
   MenuItem,
   Submenu,
-  Col
+  Col,
+  Breadcrumb,
+  BreadcrumbItem,
+  Card
 } from 'element-ui'
 
 Vue.use(Button)
@@ -27,6 +30,9 @@ Vue.use(Menu)
 Vue.use(MenuItem)
 Vue.use(Submenu)
 Vue.use(Col)
+Vue.use(Breadcrumb)
+Vue.use(BreadcrumbItem)
+Vue.use(Card)
 
 // 引入消息通知组件,并挂载为一个属性
 Vue.prototype.$message = Message

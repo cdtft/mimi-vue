@@ -12,11 +12,11 @@
       <!--侧边栏-->
       <el-aside width="200px">
           <el-menu
-            default-active="1"
+            :default-active="activePath"
             background-color="#333744"
             text-color="#fff"
             active-text-color="#3e8fbc"
-            :unique-opened="true">
+            :unique-opened="true" :router="true">
             <!--一级导航-->
             <el-submenu :index="firstMenu.id + ''" v-for="firstMenu in menuList" :key="firstMenu.id">
               <template slot="title">
@@ -24,7 +24,7 @@
                 <span>{{ firstMenu.authName }}</span>
               </template>
               <!--二级导航-->
-              <el-menu-item :index="secondMenu.id + ''" v-for="secondMenu in firstMenu.children" :key="secondMenu.id">
+              <el-menu-item :index="secondMenu.path" v-for="secondMenu in firstMenu.children" :key="secondMenu.id" @click="saveActivePath(secondMenu.path)">
                 <template slot="title">
                   <i class="el-icon-menu"></i>
                   <span>{{ secondMenu.authName }}</span>
@@ -47,10 +47,12 @@ export default {
   name: 'Hello',
   created () {
     this.getAllMenu()
+    this.activePath = window.sessionStorage.getItem('activePath')
   },
   data () {
     return {
-      menuList: []
+      menuList: [],
+      activePath: ''
     }
   },
   methods: {
@@ -62,6 +64,10 @@ export default {
     async getAllMenu () {
       const { data: resp } = await this.$http.get('/menu/list')
       this.menuList = resp.data
+    },
+    saveActivePath (path) {
+      window.sessionStorage.setItem('activePath', path)
+      this.activePath = path
     }
   }
 }
