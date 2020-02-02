@@ -15,7 +15,9 @@ import {
   Col,
   Breadcrumb,
   BreadcrumbItem,
-  Card
+  Card,
+  Row,
+  Dialog
 } from 'element-ui'
 
 Vue.use(Button)
@@ -33,6 +35,8 @@ Vue.use(Col)
 Vue.use(Breadcrumb)
 Vue.use(BreadcrumbItem)
 Vue.use(Card)
+Vue.use(Row)
+Vue.use(Dialog)
 
 // 引入消息通知组件,并挂载为一个属性
 Vue.prototype.$message = Message
